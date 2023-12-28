@@ -1,0 +1,44 @@
+<!-- result.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommendation Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h2>Recommendations</h2>
+    <table>
+        <tr>
+            <th>No</th>
+            <th>Title</th>
+            <th>Genre</th>
+        </tr>
+        {% for title, genre in recommendations %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ title }}</td>
+                <td>{{ genre }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

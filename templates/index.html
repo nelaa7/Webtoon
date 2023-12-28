@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="icon" href="{{ url_for('static', filename='image/logo.png') }}" type="image/png">
+        <!-- <link rel="icon" href="{{ url_for('static', filename='image/logo.png') }}" type="image/png"> -->
+
+        <title>Rekomendasi  Webtoon</title>
+        <!-- Bootstrap CSS -->
+        <!-- <link rel="stylesheet" href="css/bootstrap.css"> -->
+        <!-- <link rel="stylesheet" href="vendors/linericon/style.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
+        <link rel="stylesheet" href="vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.css">
+        <link rel="stylesheet" href="vendors/nice-select/css/nice-select.css">
+        <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
+        <link rel="stylesheet" href="css/splide.min.css"> -->
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='vendors/linericon/style.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='vendors/owl-carousel/owl.carousel.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='vendors/nice-select/css/nice-select.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='vendors/owl-carousel/owl.carousel.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/splide.min.css') }}">
+
+        <!-- main css -->
+        <!-- <link rel="stylesheet" href="css/style.css"> -->
+        <!-- <link rel="stylesheet" href="css/profile.css">  
+        <link rel="stylesheet" href="css/card.css">
+        <link rel="stylesheet" href="css/responsive.css"> -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/card.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f2f2f2;
+    }
+
+    h1 {
+        text-align: center;
+        color: #773c5d;
+    }
+
+    .recommended_webtoons {
+        margin-left: 0px;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 80%;
+        margin: 20px auto;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    th,
+    td {
+        border: 1px solid #000000;
+        padding: 15px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #773c5d;
+        color: white;
+    }
+</style>
+
+    </head>
+    <body>
+        <!--================Header Area =================-->
+        <header class="header_area">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <a class="navbar-brand logo_h" href="#"><img src="{{ url_for('static', filename='image/logo.png') }}" alt="" style="width: 50px;"></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav menu_nav ml-auto">
+                            <li class="nav-item active"><a class="nav-link" href="#">Home</a></li> 
+                            <!-- <li class="nav-item"><a class="nav-link" href="about.html">Original</a></li>
+                            <li class="nav-item"><a class="nav-link" href="accomodation.html">Genre</a></li> -->
+           
+                        </ul>
+                    </div> 
+                </nav>
+                
+                
+
+            </div>
+        </header>
+        <!--================Header Area =================-->
+        
+        <!--================Banner Area =================-->
+        <section class="banner_area">
+            <div class="booking_table d_flex align-items-center">
+            	<div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
+				<div class="container">
+					<div class="banner_content text-center">
+						<h6>Webtoon</h6>
+						<h2>Relax Your Mind</h2>
+						<p style="font-size: 20px;">Jika kamu stress dengan kehidupan anda<br> bacalahh buku</p>
+						<a href="#testimonial_area" class="btn theme_btn button_hover">Get Started</a>
+					</div>
+				</div>
+            </div>
+        </section>
+        <!--================Banner Area =================-->
+        
+        
+        <!-- ================ Testimonial Area  =================-->
+        <section class="testimonial_area section_gap" id="testimonial_area">
+            <div class="container">
+                <div class="section_title text-center">
+                    <h2 style="color: white;">Rekomendasi 10 Webtoon terbaik</h2>
+                    <p>Beberapa rekomendasi webtoon dengan likes terbanyak </p>
+                </div>
+                <div class="testimonial_slider owl-carousel">
+                    {% for webtoon in top_webtoons %}
+                        <div class="card">
+                            <div class="card-header">
+                                <span class="image"><img src="{{ url_for('static', filename='image/webtoon/' + webtoon['image_filename']) }}" alt="{{ webtoon['title'] }}">
+                                </span>
+                                <!-- <img src="{{ url_for('static', filename='image/webtoon/' + webtoon['image_filename']) }}" alt="{{ webtoon['title'] }}"> -->
+                                <div class="card-header-slanted-edge"></div>
+                            </div>
+                            <div class="card-body">
+                                <span class="name" style="color: #000000; font-size: 20px;">{{ webtoon['title'] }}</span><br>
+                                <span class="job-title" style="font-size: 18px;"><u>{{ webtoon['genre'] }}</u></span>
+                                <div class="card-footer">
+                                    <div class="bio" style="font-size: 20px;"><strong>likes: {{ webtoon['likes']}} | rating: {{ webtoon['rating']}}</strong></div>       
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                
+            </div>
+        </section>
+
+        <!--================ Testimonial Area  ================= -->
+      <br>
+        <!--================Booking Tabel Area =================-->
+        <section class="hotel_booking_area">
+            <div class="container">
+                <div class="row hotel_booking_table">
+                    <div class="col-md-3">
+                        <h2>Get<br> Webtoon</h2>
+                    </div>
+                    <div class="col-md-9">
+                        <form action="/recommend" method="post">
+                        <div class="boking_table">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="book_tabel_item">
+                                        <div class="input-group">
+                                            <label for="rating">Enter Rating: </label>
+                                            <input type="number" name="rating" step="0.1" style="
+                                            background: transparent;
+                                            border-radius: 0px;
+                                            margin-left: 65px;
+                                            border: 1px solid #2b3146;
+                                            font-size: 20px;
+                                            line-height: 40px;
+                                            height: 40px;
+                                            color: #777;"><br>
+                                        </div>
+                                        <div class="input-group">
+                                            <label for="likes">Enter Likes (in millions): </label>
+                                            <input type="number" name="likes" step="0.1" style="
+                                            background: transparent;
+                                            border-radius: 0px;
+                                            border: 1px solid #2b3146;
+                                            font-size: 20px;
+                                            line-height: 40px;
+                                            height: 40px;
+                                            color: #777;"><br>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="book_tabel_item">
+                                        <div class="input-group">
+                                            <select class="wide" name="genre">
+                                                <option value="">All Genres</option>
+                                                <option value="DRAMA">Drama</option>
+                                                <option value="ACTION">Action</option>
+                                                <option value="ROMANCE">Romance</option>
+                                                <option value="SLICE OF LIFE">Slice of Life</option>
+                                                <option value="FANTASY">Fantasy</option>
+                                                <option value="SUPERNATURAL">Supernatural</option>
+                                                <option value="THRILLER">Thriller</option>
+                                                <option value="HISTORICAL">Historical</option>
+                                                <option value="COMEDY">Comedy</option>
+                                                <option value="SCI-FI">Sci-fi</option>
+                                            </select>
+                                        </div>
+                                        <!-- <input type="submit" class="book_now_btn button_hover" value="Get Recommendations"> -->
+                                        <input type="submit" class="book_now_btn button_hover" style="margin-top: 10px;" value="Get Recommendations"></input>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="recommended_webtoons">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name Webtoon</th>
+                            <th>Genre</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for recommendation in recommendations %}
+                            <tr>
+                                <td>{{ loop.index }}</td>
+                                <td>{{ recommendation[0] }}</td>
+                                <td>{{ recommendation[1] }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+        </section>
+        
+       
+
+        <!--================Booking Tabel Area  =================-->
+        
+  
+
+        
+        <!--================ Latest Blog Area  =================-->
+        <footer style="background-color: black;">
+            <section class="latest_blog_area section_gap">
+                <div class="container">
+                    <div class="section_title text-center">
+                        <h2 class="title_color">Dibuat oleh Kelompok Gaje</h2>
+                        <p>The UTS/UAS INSYALLAH BERKAH</p>
+                    </div>
+
+                    <div class="row mb_30">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card-profile">
+                                <div class="profile-pic">
+                                <img src="{{ url_for('static', filename='image/nela2.JPG') }}" alt="">
+                                </div>
+                                <div class="bottom">
+                                    <div class="content">
+                                        <span class="name">Nela Anjani. P</span>
+                                        <span class="about-me">Witing resni jalaran soko kulino </span>
+                                    </div>
+                                   <div class="bottom-bottom">
+                                    <div class="social-links-container">
+                                        <a href="https://www.instagram.com/tsalas.rajaaa/" class="instagram"><i class="bi bi-instagram"></i>      
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="15.999" viewBox="0 0 16 15.999">
+                                            <path id="Subtraction_4" data-name="Subtraction 4" d="M6-582H-2a4,4,0,0,1-4-4v-8a4,4,0,0,1,4-4H6a4,4,0,0,1,4,4v8A4,4,0,0,1,6-582ZM2-594a4,4,0,0,0-4,4,4,4,0,0,0,4,4,4,4,0,0,0,4-4A4.005,4.005,0,0,0,2-594Zm4.5-2a1,1,0,0,0-1,1,1,1,0,0,0,1,1,1,1,0,0,0,1-1A1,1,0,0,0,6.5-596ZM2-587.5A2.5,2.5,0,0,1-.5-590,2.5,2.5,0,0,1,2-592.5,2.5,2.5,0,0,1,4.5-590,2.5,2.5,0,0,1,2-587.5Z" transform="translate(6 598)"></path>
+                                        </svg>
+                                    </a>              
+                                     </div>
+                                    <button class="button">152111283042</button>
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card-profile">
+                                <div class="profile-pic">
+                                <img src="{{ url_for('static', filename='image/DSC04558.JPG') }}" alt="">
+                                </div>
+                                <div class="bottom">
+                                    <div class="content">
+                                        <span class="name">Tsalas Raja. S</span>
+                                        <span class="about-me"> Tidak ada kata kata yang ada bukti nyata </span>
+                                    </div>
+                                   <div class="bottom-bottom">
+                                    <div class="social-links-container">
+                                        <a href="https://www.instagram.com/tsalas.rajaaa/" class="instagram"><i class="bi bi-instagram"></i>      
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="15.999" viewBox="0 0 16 15.999">
+                                            <path id="Subtraction_4" data-name="Subtraction 4" d="M6-582H-2a4,4,0,0,1-4-4v-8a4,4,0,0,1,4-4H6a4,4,0,0,1,4,4v8A4,4,0,0,1,6-582ZM2-594a4,4,0,0,0-4,4,4,4,0,0,0,4,4,4,4,0,0,0,4-4A4.005,4.005,0,0,0,2-594Zm4.5-2a1,1,0,0,0-1,1,1,1,0,0,0,1,1,1,1,0,0,0,1-1A1,1,0,0,0,6.5-596ZM2-587.5A2.5,2.5,0,0,1-.5-590,2.5,2.5,0,0,1,2-592.5,2.5,2.5,0,0,1,4.5-590,2.5,2.5,0,0,1,2-587.5Z" transform="translate(6 598)"></path>
+                                        </svg>
+                                    </a>              
+                                     </div>
+                                    <button class="button">152111283046</button>
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card-profile">
+                                <div class="profile-pic">
+                                <img src="{{ url_for('static', filename='image/egidia.JPG') }}" alt="">
+                                </div>
+                                <div class="bottom">
+                                    <div class="content">
+                                        <span class="name">Egidia Eza. M</span>
+                                        <span class="about-me">Yang fiksi-fiksi aja! </span>
+                                    </div>
+                                   <div class="bottom-bottom">
+                                    <div class="social-links-container">
+                                        <a href="https://www.instagram.com/tsalas.rajaaa/" class="instagram"><i class="bi bi-instagram"></i>      
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="15.999" viewBox="0 0 16 15.999">
+                                            <path id="Subtraction_4" data-name="Subtraction 4" d="M6-582H-2a4,4,0,0,1-4-4v-8a4,4,0,0,1,4-4H6a4,4,0,0,1,4,4v8A4,4,0,0,1,6-582ZM2-594a4,4,0,0,0-4,4,4,4,0,0,0,4,4,4,4,0,0,0,4-4A4.005,4.005,0,0,0,2-594Zm4.5-2a1,1,0,0,0-1,1,1,1,0,0,0,1,1,1,1,0,0,0,1-1A1,1,0,0,0,6.5-596ZM2-587.5A2.5,2.5,0,0,1-.5-590,2.5,2.5,0,0,1,2-592.5,2.5,2.5,0,0,1,4.5-590,2.5,2.5,0,0,1,2-587.5Z" transform="translate(6 598)"></path>
+                                        </svg>
+                                    </a>              
+                                     </div>
+                                    <button class="button">152111283045</button>
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                      
+                       
+                    </div>
+                </div>
+            </section>
+        </footer>
+       
+        <!--================ Recent Area  =================-->
+        
+        
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <!-- <script src="js/splide.min.js"></script>
+        <script src="js/jquery-3.2.1.min.js"></script>
+        <script src="js/popper.js"></script>
+   <script src="js/bootstrap.min.js"></script>
+        <script src="vendors/owl-carousel/owl.carousel.min.js"></script>
+        <script src="js/jquery.ajaxchimp.min.js"></script>
+        <script src="js/mail-script.js"></script>
+        <script src="vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
+        <script src="vendors/nice-select/js/jquery.nice-select.js"></script>
+        <script src="js/mail-script.js"></script>
+        <script src="js/stellar.js"></script>
+        <script src="vendors/lightbox/simpleLightbox.min.js"></script>
+        <script src="js/custom.js"></script>  -->
+         <script src="{{ url_for('static', filename='js/splide.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/popper.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendors/owl-carousel/owl.carousel.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/jquery.ajaxchimp.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/mail-script.js') }}"></script>
+<script src="{{ url_for('static', filename='vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendors/nice-select/js/jquery.nice-select.js') }}"></script>
+<script src="{{ url_for('static', filename='js/mail-script.js') }}"></script>
+<script src="{{ url_for('static', filename='js/stellar.js') }}"></script>
+<script src="{{ url_for('static', filename='vendors/lightbox/simpleLightbox.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/custom.js') }}"></script> 
+<script src="{{ url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/popper.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<script>
+    $(document).ready(function() {
+        $('.navbar-toggler').on('click', function() {
+            // Tambahkan logika toggle di sini
+        });
+    });
+</script>
+
+
+
+    </body>
+</html>
+

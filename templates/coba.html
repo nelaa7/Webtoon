@@ -1,0 +1,51 @@
+<!-- coba.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webtoon Recommendation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        form {
+            display: grid;
+            gap: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <form action="/recommend" method="post">
+        <label for="likes">Likes:</label>
+        <input type="number" name="likes" required>
+
+        <label for="rating">Rating:</label>
+        <input type="number" name="rating" required>
+
+        <label for="genre">Genre:</label>
+        <select name="genre">
+            <option value="DRAMA">Drama</option>
+            <option value="FANTASY">Fantasy</option>
+            <option value="ACTION">Action</option>
+            <!-- Tambahkan opsi genre sesuai kebutuhan -->
+        </select>
+
+        <button type="submit">Recommend</button>
+    </form>
+</body>
+</html>
